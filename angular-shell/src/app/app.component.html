@@ -1,1 +1,5 @@
+<h1>Angular shell</h1>
+<h3>Hi {{(currentUser$ | async)?.name}},</h3>
+<h3>Your email is {{(currentUser$ | async)?.email}}</h3>
+<span>(you can change your name and email below)</span>
 <router-outlet></router-outlet>

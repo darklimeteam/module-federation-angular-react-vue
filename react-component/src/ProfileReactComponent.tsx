@@ -16,29 +16,45 @@ export interface IProfileProps {
 export const ProfileReactComponent: FunctionComponent<IProfileProps> = (
   props: IProfileProps
 ) => {
-  const updateCurrentUser = (newUser: IUser) => {
-    props.onClick(newUser);
+  const [state, setState] = React.useState({ ...props });
+
+  function handleChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+
+    setState((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  }
+
+  const updateCurrentUser = () => {
+    props.onClick({ name: state.name, email: state.email });
   };
 
   return (
     <div className="container">
-      <form style={{ display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", paddingTop: "10px" }}>
         <div>
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" value={props.name} />
+          <input
+            type="text"
+            name="name"
+            value={state.name}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" value={props.email} />
+          <input
+            type="email"
+            name="email"
+            value={state.email}
+            onChange={handleChange}
+          />
         </div>
-        <button
-          onClick={() =>
-            updateCurrentUser({ name: props.name, email: props.email })
-          }
-        >
-          Summit
-        </button>
-      </form>
+        <button onClick={updateCurrentUser}>Summit</button>
+      </div>
     </div>
   );
 };

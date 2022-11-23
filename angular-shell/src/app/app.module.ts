@@ -3,9 +3,8 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { loadRemoteModule } from "./utils/federation-utils";
 import { AppComponent } from "./app.component";
-import { ProfileUserComponent } from "./profile-user/profile-user.component";
 import { RouterModule, Routes } from "@angular/router";
-import { CommonModule } from "@angular/common";
+import { ProfileUserService } from "./profile-user/profile-user.service";
 
 const routes: Routes = [
   {
@@ -36,6 +35,7 @@ export function initializeApp(): () => void {
       useFactory: initializeApp,
       multi: true,
     },
+    ProfileUserService,
   ],
   bootstrap: [AppComponent],
 })
