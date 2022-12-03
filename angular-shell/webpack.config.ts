@@ -23,6 +23,7 @@ module.exports = {
       filename: "remoteEntry.js",
       remotes: {
         profile_user: `profile_user@http://localhost:3001/remoteEntry.js`,
+        settings_user: `settings_user@http://localhost:3002/remoteEntry.js`,
       },
       shared: {
         react: {

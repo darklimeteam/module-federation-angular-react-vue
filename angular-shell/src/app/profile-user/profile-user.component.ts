@@ -17,6 +17,7 @@ import { ProfileUserService } from "./profile-user.service";
 const containerElementName = "customReactComponentContainer";
 
 @Component({
+  standalone: true,
   selector: "app-profile-user",
   template: `<div style="margin: 35px">
     <h2 style="color: cadetblue">Profile (React Microfrontend)</h2>
