@@ -19,7 +19,7 @@ module.exports = {
   },
   plugins: [
     new container.ModuleFederationPlugin({
-      name: "music-shell",
+      name: "angular-shell",
       filename: "remoteEntry.js",
       remotes: {
         profile_user: `profile_user@http://localhost:3001/remoteEntry.js`,

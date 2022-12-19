@@ -1,40 +1,66 @@
-<template>
-  <fieldset>
-    <legend>How should we show your name: {{selected}}</legend>
+  <script>
+import { defineCustomElement } from 'vue';
 
-    <div>
-      <input type="radio" id="full" value="0" v-model="selected"
-             checked>
-      <label for="full">First and second name</label>
-    </div>
-
-    <div>
-      <input type="radio" id="onlyFirstName" value="1" v-model="selected">
-      <label for="onlyFirstName">Only first name</label>
-    </div>
-
-    <div>
-      <input type="radio" id="shortSecondName" value="2" v-model="selected">
-      <label for="shortSecondName">Short second name</label>
-    </div>
-    <button @click="click(selected)">Submit</button>
-  </fieldset>
-</template>
-
-<script>
-
-export default {
-  data: function () { 
-    return { 
-      selected: 0, 
-    }; 
-  }, 
-  methods: {
-    click(selected) {
-      console.log('from Vue', selected);
-     // this.$emit(props.nameMode);
-    }
+const Settings = defineCustomElement({
+  styles: [`
+    fieldset {
+    line-height: 1.9;
+    font-family: Inter, sans-serif; 
   }
-}
-</script>
+  button {
+    margin-top: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    min-width: 64px;
+    padding: 7px 15px;
+    border: 1px solid rgba(55, 125, 255, 0.5);
+    color: rgb(55, 125, 255);
+    font-weight: 400;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  label {
+    margin-left: 7px;
+  }`],
+    template:`
+      <fieldset>
+        <legend>Notification settings: {{selected == 0 ? 'Show notifications' : (
+          selected == 1 ? 'Send notifications via email' : 'Turn off notifications')}}</legend>
 
+        <div>
+          <input type="radio" id="showN" value="0" v-model="selected"
+                checked>
+          <label for="showN">Show notifications</label>
+        </div>
+
+        <div>
+          <input type="radio" id="emailN" value="1" v-model="selected">
+          <label for="emailN">Send notifications via email</label>
+        </div>
+
+        <div>
+          <input type="radio" id="noN" value="2" v-model="selected">
+          <label for="noN">Turn off notifications</label>
+        </div>
+        <button @click="onClick(selected)">Submit</button>
+     </fieldset>
+    `,
+    data() {
+      return {
+        selected: 0
+      };
+    },
+    methods: {
+      onClick(selected) {
+        console.log(`Vue component: selected option - ${selected}.`);
+      },
+    },
+  });
+
+customElements.define("my-vue-web-comp", Settings);
+
+export default Settings;
+</script>

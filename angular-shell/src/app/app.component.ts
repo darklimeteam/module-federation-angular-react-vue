@@ -9,16 +9,11 @@ import { IUser } from "./models/user";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  durationInSeconds = 5;
   currentUser$: Observable<IUser> = new Observable();
 
   constructor(private profileUserService: ProfileUserService) {}
 
   ngOnInit(): void {
     this.currentUser$ = this.profileUserService.currentUser$;
-  }
-
-  changeCurrentUser($event: any) {
-    console.log("$event", $event);
   }
 }

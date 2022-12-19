@@ -1,41 +1,11 @@
-<template>
-  <div>
-    <h3>Vue3 App</h3>
-    <Settings :count="count" @btnClick="inc"/>
-  </div>
-
-</template>
-
 <script>
-
-import Settings2 from './components/Settings2';
-import Settings from './components/Settings';
+import Settings from "./components/Settings.vue";
 
 export default {
-  components: {
-    Settings,
-  },
-  data() {
-    return {
-      count: 0,
-    }
-  },
-  methods: {
-    inc() {
-      this.count++;
-    }
-  }
-};
+  template: `<h1>Demonstration of Settings component</h1>`
+}
 
 document.body.appendChild(
-  new Settings2({
-    props: { msg: 'dfjdjnf'}
-  })
+  new Settings()
 )
 </script>
-
-<style scoped>
-h1 {
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>

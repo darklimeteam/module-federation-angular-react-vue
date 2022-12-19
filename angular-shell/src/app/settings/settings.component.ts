@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from "@angular/core";
@@ -11,12 +12,12 @@ const containerVueElementName = "customVueComponentContainer";
   standalone: true,
   selector: "app-settings",
   template: `<div style="margin: 35px">
-    <h2 style="color: cadetblue">Profile (React Microfrontend)</h2>
+    <h2 style="color: cadetblue">Settings (Vue Microfrontend)</h2>
     <div
-      style="font-family: Inter, sans-serif; color: rgb(140, 137, 137, 1); font-size: 13px"
+      style="font-family: Inter, sans-serif; color: rgb(140, 137, 137, 1); font-size: 13px; margin-bottom: 15px"
     >
-      This user profile component is being remotely loaded into the application
-      from React App using Webpack Module Federation
+      This settings component is being remotely loaded into the application from
+      Vue App using Webpack Module Federation
     </div>
     <span #${containerVueElementName}></span>
   </div>`,
@@ -30,14 +31,16 @@ export class SettingsComponent {
 
   name = "name from Angular";
 
+  selected: number = 0;
+
+  constructor(private renderer: Renderer2) {}
+
   ngAfterViewInit() {
     try {
-      import("settings_user/Settings2").then((val) => {
-        console.log("Vue_val", val);
-        document.body.appendChild(
-          new val.default({
-            props: { msg: "dfjdjnf" },
-          })
+      import("settings_user/Settings").then((val) => {
+        this.renderer.appendChild(
+          this.containerVueRef.nativeElement,
+          new val.default()
         );
       });
     } catch {}

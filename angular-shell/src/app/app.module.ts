@@ -4,12 +4,17 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
 } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule, Routes } from "@angular/router";
 
 import { loadRemoteModule } from "./utils/federation-utils";
 import { AppComponent } from "./app.component";
-import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
+  {
+    path: "",
+    loadComponent: () =>
+      import("./layout/layout.component").then((m) => m.LayoutComponent),
+  },
   {
     path: "profile-user",
     loadComponent: () =>
@@ -34,7 +39,7 @@ export function initializeApp(): () => void {
     loadRemoteModule({
       remoteEntry: "http://localhost:3002/remoteEntry.js",
       remoteName: "settings_user",
-      exposedModule: "./Settings2",
+      exposedModule: "./Settings",
     });
   };
 }

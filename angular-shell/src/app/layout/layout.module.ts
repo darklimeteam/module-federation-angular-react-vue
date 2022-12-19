@@ -5,7 +5,7 @@ import { ProfileUserService } from "../profile-user/profile-user.service";
 import { SettingsComponent } from "../settings/settings.component";
 
 @NgModule({
-  declarations: [ProfileUserComponent, SettingsComponent],
+  imports: [ProfileUserComponent, SettingsComponent],
   providers: [ProfileUserService],
 })
 export class LayoutModule {}
