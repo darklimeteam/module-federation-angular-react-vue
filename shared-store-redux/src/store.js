@@ -12,7 +12,8 @@ const UPDATE_SETTINGS = '[settings] Update settings';
 //}
 
 // Dispatch binding functions
-const bindUpdateSettings = (currentSettingsValue) => storeSettings.dispatch(updateSettings(currentSettingsValue));
+// const bindUpdateSettings = (currentSettingsValue) => storeSettings.dispatch(updateSettings(currentSettingsValue));
+const bindUpdateSettings = (currentSettingsValue) => Store.dispatch(updateSettings(currentSettingsValue));
 
 
 export function updateCurrentSettings(currentSettingsValue) {
@@ -28,14 +29,16 @@ function updateSettings(currentSettingsValue){
     }
 }
 
-const storeSettings = configureStore({ reducer: reducer_SETTINGS_update });
+// const storeSettings = configureStore({ reducer: reducer_SETTINGS_update });
+const Store = configureStore({ reducer: reducer_SETTINGS_update });
 
 //can be used for test purpose 
 //export const SOME_VALUE = 'value from store';
    
-console.log(storeSettings.getState());
+// console.log(storeSettings.getState());
+console.log(Store.getState());
 
-function reducer_SETTINGS_update(state = {currentSettingsValue: null}, action){
+function reducer_SETTINGS_update(state = {currentSettingsValue: 'turn off'}, action){
     switch(action.type){
         case UPDATE_SETTINGS:
             return {...state, currentSettingsValue: action.payload.currentSettingsValue};
@@ -44,4 +47,5 @@ function reducer_SETTINGS_update(state = {currentSettingsValue: null}, action){
     }
 }
 
-export default storeSettings;
+// export default storeSettings;
+export default Store;

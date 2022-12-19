@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { FunctionComponent } from "react";
 
 import "./profile-style.css";

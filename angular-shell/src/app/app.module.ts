@@ -41,6 +41,11 @@ export function initializeApp(): () => void {
       remoteName: "settings_user",
       exposedModule: "./Settings",
     });
+    loadRemoteModule({
+      remoteEntry: "http://localhost:3004/remoteEntry.js",
+      remoteName: "store",
+      exposedModule: "./Store",
+    });
   };
 }
 
