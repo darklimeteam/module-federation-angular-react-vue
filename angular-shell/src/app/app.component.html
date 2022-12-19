@@ -2,4 +2,5 @@
 <h3>Hi {{(currentUser$ | async)?.name}},</h3>
 <h3>Your email is {{(currentUser$ | async)?.email}}</h3>
 <span>(you can change your name and email below)</span>
+<h3>Notifications: {{selectedNotificationModeText}}</h3>
 <router-outlet></router-outlet>

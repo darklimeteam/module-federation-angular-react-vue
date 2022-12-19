@@ -1,17 +1,14 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   Input,
-  Output,
   ViewChild,
   ViewEncapsulation,
 } from "@angular/core";
 import * as React from "react";
-import * as ReactDom from "react-dom";
 
 import { createRoot } from "react-dom/client";
-import { IUser } from "../models/user";
+import {IUser} from "../models/user";
 import { ProfileUserService } from "./profile-user.service";
 
 const containerElementName = "customReactComponentContainer";
@@ -58,7 +55,7 @@ export class ProfileUserComponent {
         );
       });
     } catch (error) {
-      console.log("Erorr", error);
+      console.log("Error", error);
     }
   }
 

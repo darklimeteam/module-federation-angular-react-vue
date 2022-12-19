@@ -33,6 +33,8 @@ module.exports = {
       },
       shared: {
         '@reduxjs': { singleton: false, eager: true },
+        effector: { singleton: true },
+        'effector-vue': { singleton: true },
       },
     }),
     new HtmlWebpackPlugin({

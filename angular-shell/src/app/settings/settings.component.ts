@@ -43,6 +43,10 @@ export class SettingsComponent {
           new val.default()
         );
       });
+
+      import("store/Store").then((val2) => {
+        this.selected = val2.default.getState().currentSettingsValue;
+      });
     } catch {}
   }
 }

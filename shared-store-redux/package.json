@@ -16,6 +16,8 @@
     "@babel/polyfill": "^7.12.1",
     "@reduxjs/toolkit": "^1.8.5",
     "html-webpack-plugin": "^5.5.0",
+    "effector": "^22.4.1",
+    "effector-vue": "^22.2.0",
     "redux": "^4.2.0"
   },
   "scripts": {

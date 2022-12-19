@@ -11,6 +11,8 @@
   "dependencies": {
     "@babel/core": "7.18.9",
     "babel-loader": "8.2.5",
+    "effector": "^22.4.1",
+    "effector-vue": "^22.2.0",
     "serve": "13.0.4",
     "vue": "^3.2.45"
   },

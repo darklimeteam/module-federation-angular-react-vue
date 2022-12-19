@@ -64,6 +64,9 @@ module.exports = (env = {}) => ({
     new ModuleFederationPlugin({
       name: 'settings_user',
       filename: 'remoteEntry.js',
+      remotes: {
+        store: `store@http://localhost:3004/remoteEntry.js`,
+      },
       exposes: {
         './Settings': './src/components/Settings'
       },
@@ -72,6 +75,9 @@ module.exports = (env = {}) => ({
           eager: true,
           requiredVersion: deps.vue,
         },
+        effector: { singleton: true },
+        'effector-vue': { singleton: true },
+        'styled-components': { singleton: true },
       },
     }),
     new HtmlWebpackPlugin({
