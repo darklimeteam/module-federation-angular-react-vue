@@ -31,7 +31,7 @@ module.exports = {
       exposes: {
         './Store': './src/store',
         './updateCurrentSettings': './src/store',
-        './getState': './src/store',
+        './getSettingsState': './src/store',
       },
       shared: {
         '@reduxjs': { singleton: false, eager: true },

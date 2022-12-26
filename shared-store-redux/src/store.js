@@ -22,7 +22,6 @@ const bindUpdateSettings = (selectedOption) => Store.dispatch(updateSettings(sel
 
 
 export function updateCurrentSettings(selectedOption) {
-    console.log('current settings option', selectedOption);
     bindUpdateSettings(selectedOption);
 }
 
@@ -34,8 +33,8 @@ function updateSettings(currentSettingsValue){
     }
 }
 
-export function getState() {
-    return Store.getState();
+export function getSettingsState() {
+    return Store.getState().currentSettingsValue;
 }
 
 const Store = configureStore({ reducer: reducer_SETTINGS_update });

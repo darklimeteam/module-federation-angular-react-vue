@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import {SettingsService} from "./settings.service";
-import {getState} from "store/getState";
+import {getSettingsState} from "store/getSettingsState";
 import Store from "store/Store";
 
 const containerVueElementName = "customVueComponentContainer";
@@ -50,13 +50,13 @@ export class SettingsComponent implements OnDestroy{
       });
 
       Store.subscribe(() => {
-        this.settingsService.setNewSettings(getState().currentSettingsValue);
+        this.settingsService.setNewSettings(getSettingsState());
       })
     } catch {}
   }
 
   ngOnDestroy(): void {
-    const unsubscribe = Store.subscribe(getState)
+    const unsubscribe = Store.subscribe(getSettingsState)
     unsubscribe()
   }
 }

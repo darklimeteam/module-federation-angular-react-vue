@@ -12,7 +12,6 @@ export class SettingsService {
   constructor() {}
 
   setNewSettings(settingsOption: SettingsOptions) {
-    console.log('888 settingsOption', settingsOption)
     this.currentSettingsSubject.next(settingsOption);
   }
 }
