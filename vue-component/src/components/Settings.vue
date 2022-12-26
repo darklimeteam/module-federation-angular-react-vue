@@ -1,14 +1,6 @@
 <script>
 import { defineCustomElement } from 'vue';
-import Store from "store/Store";
-
-let test = 0;
-
-try {
-  import("store/Store").then((val) => {
-    test =  val.default.getState().currentSettingsValue
-  });
-} catch {}
+import { updateCurrentSettings } from "store/updateCurrentSettings";
 
 const Settings = defineCustomElement({
   styles: [`
@@ -58,14 +50,20 @@ const Settings = defineCustomElement({
   `,
   data() {
     return {
-      selected: test,
+      selected: 0
     };
+  },
+  mounted() {
+    try {
+      import("store/Store").then((val) => {
+        this.selected =  val.default.getState().currentSettingsValue;
+      });
+    } catch {}
   },
   methods: {
     onClick(selected) {
       console.log(`Vue component: selected option - ${selected}.`);
-      const payload = {currentSettingsValue: Number(selected)}
-      Store.dispatch({ type: 'UPDATE_SETTINGS',  payload});
+      updateCurrentSettings(Number(selected));
     },
   },
 });

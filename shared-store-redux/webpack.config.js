@@ -30,6 +30,8 @@ module.exports = {
       library: { type: 'global', name: 'store' },
       exposes: {
         './Store': './src/store',
+        './updateCurrentSettings': './src/store',
+        './getState': './src/store',
       },
       shared: {
         '@reduxjs': { singleton: false, eager: true },

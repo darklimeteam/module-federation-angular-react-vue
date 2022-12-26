@@ -18,20 +18,24 @@ const UPDATE_SETTINGS = '[settings] Update settings';
 // }
 
 // Dispatch binding functions
-const bindUpdateSettings = (currentSettingsValue) => Store.dispatch(updateSettings(currentSettingsValue));
+const bindUpdateSettings = (selectedOption) => Store.dispatch(updateSettings(selectedOption));
 
 
-export function updateCurrentSettings(currentSettingsValue) {
-    console.log('current settings option', currentSettingsValue);
-    bindUpdateSettings(currentSettingsValue);
+export function updateCurrentSettings(selectedOption) {
+    console.log('current settings option', selectedOption);
+    bindUpdateSettings(selectedOption);
 }
 
 // Increase total todo count
 function updateSettings(currentSettingsValue){
     return {
-        type: UPDATE_SETTINGS,
-        payload: {currentSettingsValue}
+        type: 'UPDATE_SETTINGS',
+        payload: currentSettingsValue,
     }
+}
+
+export function getState() {
+    return Store.getState();
 }
 
 const Store = configureStore({ reducer: reducer_SETTINGS_update });
@@ -44,7 +48,7 @@ console.log(Store.getState());
 function reducer_SETTINGS_update(state = {currentSettingsValue: 1}, action){
     switch(action.type){
         case 'UPDATE_SETTINGS':
-            return {...state, currentSettingsValue: action.payload.currentSettingsValue};
+            return {...state, currentSettingsValue: action.payload};
         default:
             return state;
     }

@@ -1,10 +1,13 @@
 import {
   Component,
-  ElementRef,
+  ElementRef, OnDestroy,
   Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from "@angular/core";
+import {SettingsService} from "./settings.service";
+import {getState} from "store/getState";
+import Store from "store/Store";
 
 const containerVueElementName = "customVueComponentContainer";
 
@@ -23,7 +26,7 @@ const containerVueElementName = "customVueComponentContainer";
   </div>`,
   encapsulation: ViewEncapsulation.None,
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnDestroy{
   @ViewChild(containerVueElementName, { static: true })
   containerVueRef!: ElementRef;
 
@@ -31,9 +34,7 @@ export class SettingsComponent {
 
   name = "name from Angular";
 
-  selected: number = 0;
-
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private settingsService: SettingsService) {}
 
   ngAfterViewInit() {
     try {
@@ -45,8 +46,17 @@ export class SettingsComponent {
       });
 
       import("store/Store").then((val2) => {
-        this.selected = val2.default.getState().currentSettingsValue;
+        this.settingsService.setNewSettings(val2.default.getState().currentSettingsValue);
       });
+
+      Store.subscribe(() => {
+        this.settingsService.setNewSettings(getState().currentSettingsValue);
+      })
     } catch {}
+  }
+
+  ngOnDestroy(): void {
+    const unsubscribe = Store.subscribe(getState)
+    unsubscribe()
   }
 }
